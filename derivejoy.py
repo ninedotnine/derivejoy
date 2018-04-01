@@ -96,6 +96,7 @@ def mainloop():
             if not seen_before(post):
                 backup_post(post['data'])
                 post_status(post['data']['title'])
+                break
 
 if __name__ == "__main__":
     main()
