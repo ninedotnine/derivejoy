@@ -55,7 +55,7 @@ def first_run():
     post_status(welcome_msg)
     currentTime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     try:
-        with open(cachefile, mode='w') as log:
+        with open(cachefile, mode='x') as log:
             log.write(currentTime)
             log.write(" [!<|°_°|>!] ")
             log.write(welcome_msg)
