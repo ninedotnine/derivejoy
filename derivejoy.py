@@ -89,15 +89,14 @@ def mainloop():
         if post['data']['stickied']:
             continue
         assert post['kind'] == "t3"
-        print( "----------------------------------------")
-        print("{title}\n{score} (+{ups}, -{downs}) by {author} [{id}]"
-                .format(**post['data']))
         if int(post['data']['score']) > min_score_threshold:
+            print("---------------------------------------------------")
+            print("{title}\n{score} (+{ups}, -{downs}) by {author} [{id}]"
+                    .format(**post['data']))
             print("post above score threshold!")
             if not seen_before(post):
                 backup_post(post['data'])
                 post_status(post['data']['title'])
-
 
 if __name__ == "__main__":
     main()
