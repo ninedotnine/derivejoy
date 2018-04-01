@@ -3,7 +3,7 @@
 import requests
 import urllib.request
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from time import sleep
 from random import randint
 
@@ -78,12 +78,8 @@ def main():
     while True:
         mainloop()
         sleeptime = randint(7200, 50400) # every 8 hours on average
-        if sleeptime < 120:
-            print(f"{sleeptime} seconds to next check.")
-        elif sleeptime < 3600:
-            print(f"{sleeptime//60} seconds to next check.")
-        else:
-            print(f"{sleeptime//3600} hours and {(sleeptime//60)%60} minutes to next check.")
+        wakey = timedelta(seconds=sleeptime) + datetime.now()
+        print(f"next check at {wakey.strftime('%Y-%m-%d %H:%M:%S')}")
         sleep(sleeptime)
 
 def mainloop():
