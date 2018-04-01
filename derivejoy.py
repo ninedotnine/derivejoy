@@ -41,9 +41,7 @@ def seen_before(post):
 def post_status(message):
     r = requests.post(facebook_url, data =
                         {"access_token" : access_token, "message" : message})
-    print(r)
-    print(r.text)
-
+    print("code:", r.status_code)
 
 def backup_post(postdata):
     # logfile has format: timestamp [id] title (score (ups, downs)) by author
