@@ -13,6 +13,8 @@ welcome_msg = "DERIVE JOY FROM THIS WEBSITE, I AM A HUMAN"
 cachefile = "/home/dan/.cache/derivejoy.log"
 
 min_score_threshold = 2000
+badwords = ["eddit", "PsBattle"]
+
 reddit_url = "https://www.reddit.com/r/subredditsimulator/top/.json?t=today&limit=5"
 facebook_url = "https://graph.facebook.com/v2.11/me/feed"
 
@@ -35,6 +37,10 @@ def seen_before(postdata):
         return False # the log must be empty!
 
 def post_status(message):
+    for word in badwords:
+        if word in message:
+            print(f"not posting, badword {word}")
+            return
     data = {"access_token" : access_token, "message" : message}
     r = requests.post(facebook_url, data = data)
     print("posted to facebook:", r.status_code)
