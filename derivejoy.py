@@ -20,14 +20,14 @@ def load_posts(url):
     response = requests.get(url, headers = {"User-Agent" : useragent})
     if response.status_code != 200:
         return None
-    return response.json()['data']['children']
+    return response.json().get("data", {}).get("children")
 
-def seen_before(post):
+def seen_before(postdata):
     try:
         logfile = open(cachefile, mode='r')
         for line in logfile:
             postID = line.split(']')[0].split('[')[1]
-            if postID == post['data']['id']:
+            if postID == postdata.get("id"):
                 print("found a match. i've seen this one before.")
                 return True
         return False
@@ -35,8 +35,8 @@ def seen_before(post):
         return False # the log must be empty!
 
 def post_status(message):
-    r = requests.post(facebook_url, data =
-                        {"access_token" : access_token, "message" : message})
+    data = {"access_token" : access_token, "message" : message}
+    r = requests.post(facebook_url, data = data)
     print("posted to facebook:", r.status_code)
 
 def backup_post(postdata):
@@ -83,15 +83,20 @@ def mainloop():
         return
     print("---------------------------------------------------")
     for post in posts:
-        if post['data']['stickied']:
+        data = post.get("data")
+        if data == None:
+            print("why no data?")
+            continue
+        if data.get("stickied"):
             continue
         assert post['kind'] == "t3"
-        if int(post['data']['score']) > min_score_threshold:
+        score = data.get("score")
+        if score is not None and score > min_score_threshold:
             print("{title}\n{score} (+{ups}, -{downs}) by {author} [{id}]"
-                    .format(**post['data']))
-            if not seen_before(post):
-                backup_post(post['data'])
-                post_status(post['data']['title'])
+                    .format(**data))
+            if not seen_before(data):
+                backup_post(data)
+                post_status(data.get("title"))
                 break
 
 if __name__ == "__main__":
