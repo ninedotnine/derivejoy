@@ -21,8 +21,8 @@ def load_posts(url):
     req = urllib.request.Request(url)
     req.add_header("User-agent", useragent)
     with urllib.request.urlopen(req) as httpresponse:
-        print(httpresponse.geturl())
-        assert httpresponse.getcode() == 200
+        if httpresponse.getcode() != 200:
+            return None
         loaded = json.load(httpresponse)
     return loaded['data']['children']
 
