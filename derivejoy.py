@@ -82,6 +82,9 @@ def main():
 
 def mainloop():
     posts = load_posts(reddit_url);
+    if posts == None:
+        print("ERROR: no post found!")
+        return
     for post in posts:
         if post['data']['stickied']:
             continue
