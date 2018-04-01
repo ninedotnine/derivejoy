@@ -41,7 +41,7 @@ def seen_before(post):
 def post_status(message):
     r = requests.post(facebook_url, data =
                         {"access_token" : access_token, "message" : message})
-    print("code:", r.status_code)
+    print("posted to facebook:", r.status_code)
 
 def backup_post(postdata):
     # logfile has format: timestamp [id] title (score (ups, downs)) by author
@@ -85,15 +85,14 @@ def mainloop():
     if posts == None:
         print("ERROR: no post found!")
         return
+    print("---------------------------------------------------")
     for post in posts:
         if post['data']['stickied']:
             continue
         assert post['kind'] == "t3"
         if int(post['data']['score']) > min_score_threshold:
-            print("---------------------------------------------------")
             print("{title}\n{score} (+{ups}, -{downs}) by {author} [{id}]"
                     .format(**post['data']))
-            print("post above score threshold!")
             if not seen_before(post):
                 backup_post(post['data'])
                 post_status(post['data']['title'])
