@@ -2,7 +2,6 @@
 
 import requests
 import urllib.request
-import json
 from datetime import datetime, timedelta
 from time import sleep
 from random import randint
@@ -18,13 +17,10 @@ reddit_url = "https://www.reddit.com/r/subredditsimulator/top/.json?t=today&limi
 facebook_url = "https://graph.facebook.com/v2.11/me/feed"
 
 def load_posts(url):
-    req = urllib.request.Request(url)
-    req.add_header("User-agent", useragent)
-    with urllib.request.urlopen(req) as httpresponse:
-        if httpresponse.getcode() != 200:
-            return None
-        loaded = json.load(httpresponse)
-    return loaded['data']['children']
+    response = requests.get(url, headers = {"User-Agent" : useragent})
+    if response.status_code != 200:
+        return None
+    return response.json()['data']['children']
 
 def seen_before(post):
     try:
