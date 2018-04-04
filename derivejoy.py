@@ -76,11 +76,15 @@ def main():
         exit(0)
 
     while True:
-        mainloop()
-        sleeptime = randint(7200, 50400) # every 8 hours on average
-        wakey = timedelta(seconds=sleeptime) + datetime.now()
-        print(f"next check at {wakey.strftime('%Y-%m-%d %H:%M:%S')}")
-        sleep(sleeptime)
+        try:
+            mainloop()
+            sleeptime = randint(7200, 50400) # every 8 hours on average
+            wakey = timedelta(seconds=sleeptime) + datetime.now()
+            print(f"next check at {wakey.strftime('%Y-%m-%d %H:%M:%S')}")
+            sleep(sleeptime)
+        except KeyboardInterrupt:
+            print("interrupt received, quitting.")
+            exit(0)
 
 def mainloop():
     posts = load_posts(reddit_url);
