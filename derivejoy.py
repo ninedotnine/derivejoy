@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import requests
-import urllib.request
 from datetime import datetime, timedelta
 from time import sleep
 from random import randint
