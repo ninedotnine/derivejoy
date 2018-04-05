@@ -11,7 +11,7 @@ silliness, mostly.
 
 the surveillance imposed on us today far exceeds that of the former soviet union.[^1]
 
-there's nothing a typical user can do to stop facebook from collecting their data. we can try (and i have) to stop giving our data for facebook, but we can only slow it down. it follows us around the web, on our phones, in photos, in our friends' contact lists. there is no way to avoid having some true data about you collected.
+there's nothing a typical user can do to stop facebook from collecting their data. we can try (and i have) to stop giving our data to facebook, but our best efforts can only slow it down. it follows us around the web, on our phones, in our friends' contact lists. it reads your conversations and recognizes you in photos. if you have a car, it probably knows your license plate. there is no way to avoid having some true data about you collected.
 
 maybe there's another way. suppose we overwhelm facebook with fake data about ourselves. sell that to your advertisers, eh.
 
@@ -37,7 +37,7 @@ oh
 
 ### may i use this myself?
 
-i encourage you to! derivejoy is free software; you may use it or modify it for any purpose you like under the condition that if you redistribute it then you also do so under similar terms.
+i encourage you to! derivejoy is [https://fsf.org](free software); you may use it or modify it for any purpose you like under the condition that if you redistribute it then you also do so under similar terms.
 
 
 
