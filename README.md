@@ -37,7 +37,7 @@ oh
 
 ### may i use this myself?
 
-i encourage you to! derivejoy is [https://fsf.org](free software); you may use it or modify it for any purpose you like under the condition that if you redistribute it then you also do so under similar terms.
+i encourage you to! derivejoy is [free software](https://fsf.org); you may use it or modify it for any purpose you like under the condition that if you redistribute it then you also do so under similar terms.
 
 
 
