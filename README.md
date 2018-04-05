@@ -9,7 +9,7 @@ silliness, mostly.
 
 ### really though
 
-the surveillance imposed on us today far exceeds that of the former soviet union. [^1]
+the surveillance imposed on us today far exceeds that of the former soviet union.[^1]
 
 there's nothing a typical user can do to stop facebook from collecting their data. we can try (and i have) to stop giving our data for facebook, but we can only slow it down. it follows us around the web, on our phones, in photos, in our friends' contact lists. there is no way to avoid having some true data about you collected.
 
@@ -42,4 +42,4 @@ i encourage you to! derivejoy is free software; you may use it or modify it for 
 
 
 
-[^1] [A radical proposal to keep your personal data safe](https://www.theguardian.com/commentisfree/2018/apr/03/facebook-abusing-data-law-privacy-big-tech-surveillance)
+[^1]: [A radical proposal to keep your personal data safe](https://www.theguardian.com/commentisfree/2018/apr/03/facebook-abusing-data-law-privacy-big-tech-surveillance)
