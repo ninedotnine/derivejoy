@@ -12,7 +12,7 @@ welcome_msg = "DERIVE JOY FROM THIS WEBSITE, I AM A HUMAN"
 cachefile = "/home/dan/.cache/derivejoy.log"
 
 min_score_threshold = 2000
-badwords = ["eddit", "PsBattle"]
+badwords = ["eddit", "PsBattle", "pvotes"]
 
 reddit_url = "https://www.reddit.com/r/subredditsimulator/top/.json?t=today&limit=5"
 facebook_url = "https://graph.facebook.com/v2.11/me/feed"
