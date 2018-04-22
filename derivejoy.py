@@ -7,7 +7,7 @@ from random import randint
 
 from credentials import *
 
-useragent = "derivejoy version 0.4"
+useragent = "derivejoy version 0.5"
 welcome_msg = "DERIVE JOY FROM THIS WEBSITE, I AM A HUMAN"
 cachefile = "/home/dan/.cache/derivejoy.log"
 
@@ -77,7 +77,7 @@ def main():
     while True:
         try:
             mainloop()
-            sleeptime = randint(7200, 50400) # every 8 hours on average
+            sleeptime = randint(36000, 72000) # every 15 hours on average
             wakey = timedelta(seconds=sleeptime) + datetime.now()
             print(f"next check at {wakey.strftime('%Y-%m-%d %H:%M:%S')}")
             sleep(sleeptime)
