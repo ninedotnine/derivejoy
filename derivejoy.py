@@ -12,7 +12,7 @@ welcome_msg = "DERIVE JOY FROM THIS WEBSITE, I AM A HUMAN"
 cachefile = "/home/dan/.cache/derivejoy.log"
 
 min_score_threshold = 2000
-badwords = ["eddit", "PsBattle", "pvotes"]
+badwords = ["eddit", "PsBattle", "pvote"]
 
 reddit_url = "https://www.reddit.com/r/subredditsimulator/top/.json?t=today&limit=5"
 facebook_url = "https://graph.facebook.com/v2.11/me/feed"
@@ -36,10 +36,6 @@ def seen_before(postdata):
         return False # the log must be empty!
 
 def post_status(message):
-    for word in badwords:
-        if word in message:
-            print(f"not posting, badword {word}")
-            return
     data = {"access_token" : access_token, "message" : message}
     response = requests.post(facebook_url, data = data)
     if response.status_code == 400:
@@ -68,6 +64,21 @@ def first_run():
         raise
     print("initialized!")
 
+def clean_message(message):
+    # what to do for "PsBattle" ?
+    if "eddit" in message:
+        message = message.replace("reddit", "facebook")
+        message = message.replace("Reddit", "Facebook")
+    if "pvote" in message:
+        message = message.replace("upvote", "like")
+        message = message.replace("Upvote", "Like")
+    print("cleaned message: ", message)
+    for word in badwords:
+        if word in message:
+            print(f"not posting, badword {word}")
+            return None
+    print("cleaned message: ", message)
+    return message
 
 def main():
     try:
@@ -103,13 +114,17 @@ def mainloop():
             continue
         assert post['kind'] == "t3"
         score = data.get("score")
-        if score is not None and score > min_score_threshold:
-            print("{title}\n{score} (+{ups}, -{downs}) by {author} [{id}]"
-                    .format(**data))
-            if not seen_before(data):
-                backup_post(data)
-                post_status(data.get("title"))
-                break
+        if score is None or score < min_score_threshold:
+            continue
+        print("{title}\n{score} (+{ups}, -{downs}) by {author} [{id}]"
+                .format(**data))
+        if not seen_before(data):
+            message = clean_message(data.get("title"))
+            if message is None:
+                continue
+            backup_post(data)
+            post_status(message)
+            break
 
 if __name__ == "__main__":
     main()
