@@ -41,8 +41,11 @@ def post_status(message):
             print(f"not posting, badword {word}")
             return
     data = {"access_token" : access_token, "message" : message}
-    r = requests.post(facebook_url, data = data)
-    print("posted to facebook:", r.status_code)
+    response = requests.post(facebook_url, data = data)
+    if response.status_code == 400:
+        print("code 400. maybe your user access token is expired?")
+    else:
+        print("posted to facebook:", response.status_code)
 
 def backup_post(postdata):
     # logfile has format: timestamp [id] title (score (ups, downs)) by author
